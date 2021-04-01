@@ -39,6 +39,12 @@ public class ProdutoController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	/*@GetMapping("/tituloProduto/{tituloProduto}")
+	public ResponseEntity<Produto> getByTituloProduto(@PathVariable long tituloProduto){
+		return repository.findById(tituloProduto).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
+	}*/
+	
 	@PostMapping
 	public ResponseEntity<Produto> post (@RequestBody Produto produto){
 		return ResponseEntity.status(HttpStatus.CREATED)

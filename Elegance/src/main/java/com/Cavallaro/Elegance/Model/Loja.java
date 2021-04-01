@@ -39,17 +39,25 @@ public class Loja {
 	
 	//vamos criar o manytomany, essa sera minha principal tabela
 	
+	@OneToMany(mappedBy = "loja" , cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({"loja","nomeLoja", "descricao"})
+	private List <Produto> produto;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "LojaUsuario", joinColumns = @JoinColumn(name = "Loja_fk"),
-	inverseJoinColumns = {@JoinColumn (name = "Usuario_fk")})
-	@JsonIgnoreProperties ({"nome", "usuario", "senha, LojaUsuario"})
-	private List<Usuario> usuario = new ArrayList<>();
+	@JoinTable(name = "LojaUsuario", joinColumns = @JoinColumn(name = "loja_fk"),
+	inverseJoinColumns = @JoinColumn (name = "usuario_fk"))
+	@JsonIgnoreProperties ({"nome", "usuario", "senha", "LojaUsuario", "produto"})
+	private List<Usuario> usuarios = new ArrayList<>();
 	
-	
-	@OneToMany(mappedBy = "Loja" , cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("Loja")
-	private List <Produto> produto;
+	/*
+	 * @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+	  name = "categoriaProduto", 
+	  joinColumns = @JoinColumn(name = "categoria_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "produto_id"))
+	@JsonIgnoreProperties({"nomeProduto","preco","quantidade","ativo","marca","categoriaProduto"})
+	private List<Produto> produtos = new ArrayList<>();
+	 */
 
 	public long getIdLoja() {
 		return idLoja;
@@ -75,12 +83,14 @@ public class Loja {
 		this.descricao = descricao;
 	}
 
-	public List<Usuario> getUsuario() {
-		return usuario;
+	
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	public List<Produto> getProduto() {

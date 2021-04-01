@@ -19,7 +19,7 @@ public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idProduto;
+	private long idProduto;
 	
 	@NotNull
 	@Size (max = 45)
@@ -34,13 +34,13 @@ public class Produto {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
-	private Loja Loja;
+	private Loja loja;
 
-	public int getIdProduto() {
+	public long getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(int idProduto) {
+	public void setIdProduto(long idProduto) {
 		this.idProduto = idProduto;
 	}
 
@@ -69,12 +69,14 @@ public class Produto {
 	}
 
 	public Loja getLoja() {
-		return Loja;
+		return loja;
 	}
 
 	public void setLoja(Loja loja) {
-		Loja = loja;
+		this.loja = loja;
 	}
+
+
 	
 	
 }

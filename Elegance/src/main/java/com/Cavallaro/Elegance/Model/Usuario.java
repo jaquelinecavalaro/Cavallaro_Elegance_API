@@ -22,7 +22,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idUsuario;
+	private long idUsuario;
 	
 	@NotNull
 	@Size (max = 45)
@@ -37,17 +37,17 @@ public class Usuario {
 	private String senha;
 	
 	
-	@ManyToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties ({"nomeLoja","descricao, usuario"})
+	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnoreProperties ({"nomeLoja","descricao", "usuarios", "produto"})
 	private List<Loja> LojaUsuario = new ArrayList<>();
 
 
-	public int getIdUsuario() {
+	public long getIdUsuario() {
 		return idUsuario;
 	}
 
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

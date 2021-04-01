@@ -53,11 +53,11 @@ public class LojaController {
 		return ResponseEntity.ok(repository.save(loja));				
 	}
 	
-	   @PutMapping("/LojaUsuario/loja/{Loja_fk}/usuario/{Usuario_fk}")
-	public ResponseEntity<Loja> postLojaUsuario (@PathVariable long Loja_fk,@PathVariable long Usuario_fk){
+	   @PutMapping("/LojaUsuario/loja/{loja_fk}/usuario/{usuario_fk}")
+	public ResponseEntity<Loja> postLojaUsuario (@PathVariable long loja_fk,@PathVariable long usuario_fk){
 		
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(service.UsuarioLoja(Loja_fk, Usuario_fk));
+				.body(service.UsuarioLoja(loja_fk, usuario_fk));
 	} 
 	  
 	  

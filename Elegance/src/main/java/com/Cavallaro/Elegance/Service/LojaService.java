@@ -19,22 +19,19 @@ public class LojaService {
 		@Autowired
 		private UsuarioRepository repositoryUsuario;
 		
-		public Loja UsuarioLoja (long lojaId, long usuarioId) {
+		public Loja UsuarioLoja (long loja_fk, long usuario_fk) {
 			
-			Optional<Loja> lojaExistente = repositoryLoja.findById(lojaId);
-			Optional<Usuario> usuarioExistente = repositoryUsuario.findById(usuarioId);
+			Optional<Loja> lojaExistente = repositoryLoja.findById(loja_fk);
+			Optional<Usuario> usuarioExistente = repositoryUsuario.findById(usuario_fk);
 			
 			if (lojaExistente.isPresent()&&usuarioExistente.isPresent()) {
 				
-				lojaExistente.get().getUsuario().add(usuarioExistente.get());
+				lojaExistente.get().getUsuarios().add(usuarioExistente.get());
 				
 				repositoryLoja.save(lojaExistente.get());
 				
 				return repositoryLoja.save(lojaExistente.get());
-		
-	
-				
-			}
+		}
 			
 			return null;
 		}
