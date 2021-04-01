@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
+
+
 @Entity
 @Table(name = "db_loja")
 public class Loja {
@@ -44,20 +46,19 @@ public class Loja {
 	private List <Produto> produto;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "LojaUsuario", joinColumns = @JoinColumn(name = "loja_fk"),
+	@JoinTable(name = "lojaUsuario", joinColumns = @JoinColumn(name = "loja_fk"),
 	inverseJoinColumns = @JoinColumn (name = "usuario_fk"))
-	@JsonIgnoreProperties ({"nome", "usuario", "senha", "LojaUsuario", "produto"})
+	@JsonIgnoreProperties ({"nome","usuario","senha","lojaUsuario"})
 	private List<Usuario> usuarios = new ArrayList<>();
 	
 	/*
-	 * @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(
-	  name = "categoriaProduto", 
-	  joinColumns = @JoinColumn(name = "categoria_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "produto_id"))
-	@JsonIgnoreProperties({"nomeProduto","preco","quantidade","ativo","marca","categoriaProduto"})
-	private List<Produto> produtos = new ArrayList<>();
-	 */
+     * EXPLICACAO URI:
+     * 
+     *     /lojaUsuario -> nome da tabela associativa
+     *     /usuarios -> nome da lista de jogos dentro da classe Loja
+     *     /lojaUsuario -> nome da lista de plataformas dentro da classe Usuario
+     * 
+     * */
 
 	public long getIdLoja() {
 		return idLoja;
@@ -82,8 +83,6 @@ public class Loja {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	
 
 	public List<Usuario> getUsuarios() {
 		return usuarios;

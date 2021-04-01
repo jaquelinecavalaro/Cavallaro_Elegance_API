@@ -53,9 +53,16 @@ public class LojaController {
 		return ResponseEntity.ok(repository.save(loja));				
 	}
 	
-	   @PutMapping("/LojaUsuario/loja/{loja_fk}/usuario/{usuario_fk}")
+	  /*
+	     * EXPLICACAO URI:
+	     * 
+	     *     /lojaUsuario -> nome da tabela associativa
+	     *     /usuarios -> nome da lista de usuario dentro da classe Loja
+	     *     /lojaUsuario -> nome da lista de loja dentro da classe Usuario
+	     * 
+	     * */
+	   @PutMapping("/lojaUsuario/usuarios/{loja_fk}/lojaUsuario/{usuario_fk}")
 	public ResponseEntity<Loja> postLojaUsuario (@PathVariable long loja_fk,@PathVariable long usuario_fk){
-		
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(service.UsuarioLoja(loja_fk, usuario_fk));
 	} 

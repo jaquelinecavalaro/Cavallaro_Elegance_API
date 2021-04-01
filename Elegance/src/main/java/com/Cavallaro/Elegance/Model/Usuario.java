@@ -39,7 +39,7 @@ public class Usuario {
 	
 	@ManyToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnoreProperties ({"nomeLoja","descricao", "usuarios", "produto"})
-	private List<Loja> LojaUsuario = new ArrayList<>();
+	private List<Loja> lojaUsuario = new ArrayList<>();
 
 
 	public long getIdUsuario() {
@@ -83,13 +83,15 @@ public class Usuario {
 
 
 	public List<Loja> getLojaUsuario() {
-		return LojaUsuario;
+		return lojaUsuario;
 	}
 
 
 	public void setLojaUsuario(List<Loja> lojaUsuario) {
-		LojaUsuario = lojaUsuario;
+		this.lojaUsuario = lojaUsuario;
 	}
+
+
 
 
 
