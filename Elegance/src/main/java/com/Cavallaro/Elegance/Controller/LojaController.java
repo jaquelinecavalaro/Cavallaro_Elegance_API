@@ -61,6 +61,7 @@ public class LojaController {
 	     *     /lojaUsuario -> nome da lista de loja dentro da classe Usuario
 	     * 
 	     * */
+	  //ERRADO @PutMapping("/LojaUsuario/loja/{loja_fk}/usuario/{usuario_fk}")
 	   @PutMapping("/lojaUsuario/usuarios/{loja_fk}/lojaUsuario/{usuario_fk}")
 	public ResponseEntity<Loja> postLojaUsuario (@PathVariable long loja_fk,@PathVariable long usuario_fk){
 		return ResponseEntity.status(HttpStatus.CREATED)
