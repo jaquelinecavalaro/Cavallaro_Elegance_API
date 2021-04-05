@@ -39,11 +39,24 @@ public class ProdutoController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	/*@GetMapping("/tituloProduto/{tituloProduto}")
+	 @GetMapping("/menorValor/{valor}")
+	    public ResponseEntity<List<Produto>> findByMenorValor(@PathVariable double valor){
+
+	        return ResponseEntity.ok(repository.findAllByValorLessThanEqual(valor));
+	    }
+
+	    /* TRAS TODOS OS VALORES >= (maiores ou igual) CADASTRADOS DENTRO DE SUA TABELA */
+	    @GetMapping("/maiorValor/{valor}")
+	    public ResponseEntity<List<Produto>> findByPrecoMaiorProduto(@PathVariable double valor){
+
+	        return ResponseEntity.ok(repository.findAllByValorGreaterThanEqual(valor));
+	    }
+	
+	@GetMapping("/tituloProduto/{tituloProduto}")
 	public ResponseEntity<Produto> getByTituloProduto(@PathVariable long tituloProduto){
 		return repository.findById(tituloProduto).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
-	}*/
+	}
 	
 	@PostMapping
 	public ResponseEntity<Produto> post (@RequestBody Produto produto){
